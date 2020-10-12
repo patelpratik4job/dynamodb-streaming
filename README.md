@@ -1,13 +1,13 @@
-## One click deploy
-<a href="https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/sameer-goel/dynamodb-streaming" target="_blank"><img src="./images/deplywithamplifyconsole.png" alt="deplywithamplifyconsole"></a>
 
-
-## To deploy Manualy
+## To deploy
 
 You can deploy this app and the back end infrastructure in one of two ways:
+ 
+1. One click deploy button
+2. The Amplify CLI
 
-1. The Amplify CLI
-2. One click deploy button
+### One click deploy
+<a href="https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/sameer-goel/dynamodb-streaming" target="_blank"><img src="./images/deplywithamplifyconsole.png" alt="deplywithamplifyconsole"></a>
 
 ### Amplify CLI
 
