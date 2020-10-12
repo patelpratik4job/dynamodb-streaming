@@ -1,3 +1,6 @@
+https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/sameer-goel/dynamodb-streaming
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
