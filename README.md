@@ -1,7 +1,4 @@
-<a href="https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/sameer-goel/dynamodb-streaming"><img src="./images/deplywithamplifyconsole.png"></a>
-
-https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/sameer-goel/dynamodb-streaming
-
+<a href="https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/sameer-goel/dynamodb-streaming" target="_blank"><img src="./images/deplywithamplifyconsole.png" alt="deplywithamplifyconsole"></a>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
