@@ -1,4 +1,4 @@
-<img src="./images/deplywithamplifyconsole.png">
+<a href="https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/sameer-goel/dynamodb-streaming"><img src="./images/deplywithamplifyconsole.png"></a>
 
 https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/sameer-goel/dynamodb-streaming
 
