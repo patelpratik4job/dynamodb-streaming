@@ -1,5 +1,4 @@
-type Todo @model {
+type windspeed @model {
   id: ID!
-  name: String!
-  value: String
+  value: Int
 }

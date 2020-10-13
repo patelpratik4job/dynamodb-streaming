@@ -1,42 +1,39 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createWindspeed = /* GraphQL */ `
+  mutation CreateWindspeed(
+    $input: CreateWindspeedInput!
+    $condition: ModelwindspeedConditionInput
   ) {
-    createTodo(input: $input, condition: $condition) {
+    createWindspeed(input: $input, condition: $condition) {
       id
-      name
       value
       createdAt
       updatedAt
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateWindspeed = /* GraphQL */ `
+  mutation UpdateWindspeed(
+    $input: UpdateWindspeedInput!
+    $condition: ModelwindspeedConditionInput
   ) {
-    updateTodo(input: $input, condition: $condition) {
+    updateWindspeed(input: $input, condition: $condition) {
       id
-      name
       value
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteWindspeed = /* GraphQL */ `
+  mutation DeleteWindspeed(
+    $input: DeleteWindspeedInput!
+    $condition: ModelwindspeedConditionInput
   ) {
-    deleteTodo(input: $input, condition: $condition) {
+    deleteWindspeed(input: $input, condition: $condition) {
       id
-      name
       value
       createdAt
       updatedAt
