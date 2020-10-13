@@ -32,8 +32,8 @@ $ amplify configure
 2. Clone the repo, install dependencies
 
 ```sh
-$ git clone https://github.com/GantMan/enjoytheshow.git
-$ cd enjoytheshow
+$ git clone https://github.com/sameer-goel/dynamodb-streaming
+$ cd dynamodb-streaming
 $ npm install
 ```
 
