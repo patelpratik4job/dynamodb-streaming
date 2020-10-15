@@ -25,16 +25,21 @@
 .App-buttons > button {
   font-size: 1.5rem;
   padding: 4%;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-right: 20px;
   margin-left: 20px;
   border: none;
-  color: white; 
+  /* color: white;  */
   font-weight: bold;
-  background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,116,1) 100%);
+  background-color: orange;
+  /* background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,116,1) 100%); */
 }
 
 button:hover {
+  box-shadow: 20px 20px 20px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+img:hover {
   box-shadow: 20px 20px 20px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
@@ -45,3 +50,9 @@ button:hover {
 .App-buttonsNo {
   background-color: #F65314;
 } */
+
+img {
+  display: flex;
+  height: 3.5rem;
+  border-radius: 10px;
+}

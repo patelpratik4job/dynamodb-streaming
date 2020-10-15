@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 // import { FiRefreshCcw } from 'react-icons/fi';
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
+import { faSync } from "@fortawesome/free-solid-svg-icons";
 import Amplify, {API} from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import awsconfig from './aws-exports';
 import * as mutations from './graphql/mutations';
 import * as queries from './graphql/queries';
+import ddblogo from './images/Amazon-DynamoDB_lgt.png'
 import toast from "light-toast"
 import {
   /*Sector*/ Cell, Legend, Tooltip, Label, text,BarChart, Bar, XAxis, YAxis, CartesianGrid, LineChart, Line,
 } from 'recharts';
 Amplify.configure(awsconfig);
-library.add(fas)
+// library.add(fas)
 
 function App() {
   const [mylist, setMyList] = useState([]);
@@ -52,16 +53,16 @@ function App() {
   }
 
   function generate () {
-    toast.success('Generating values...', 5000, () => {
-        alert("Generated 10 values")
-    }); 
     genValues();
-    // updateVals();
+    toast.success('Generating values...', 5000, () => {
+        // alert("Generated 10 values")
+        updateVals();
+    }); 
   }
 
   const refresh = () => {
     // alert("refreshing");
-    toast.success('Refreshing...');
+    toast.success('Updating chart...');
     updateVals();
   }
   
@@ -78,11 +79,19 @@ function App() {
 
   function CustomizedLabel(props) {
     const { x, y, stroke, value } = props;
+    if (value > 50 || value < 30) {
     return (
-      <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
+      <text x={x} y={y} dy={-4} fill="red" fontSize={10} textAnchor="middle">
         {value}
       </text>
     );
+    }else{
+      return (
+        <text x={x} y={y} dy={-4} fill="green" fontSize={10} textAnchor="middle" >
+          {value}
+        </text>
+      );
+    }
   }
   const myChartArray = [];
   generateKeyValePairs(myChartArray);
@@ -99,10 +108,10 @@ function App() {
         }}
         >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" height={60} tick />
+        <XAxis tick={false}/>
         <YAxis />
         <Tooltip />
-        <Line type="monotone" dataKey="value" stroke="#8884d8" label={<CustomizedLabel />} />
+        <Line type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} label={<CustomizedLabel />} />
       </LineChart>
       )
   }
@@ -115,9 +124,16 @@ function App() {
 
         <h1>Wind turbine data</h1>
         <div className="App-buttons">
-        <button className="App-buttonsYes" onClick={generate}>Generate</button>
-        {/* <button className="App-buttonsNo" onClick={updateNo}>Stop</button> */}
-        <button className="App-buttonsNo" onClick={refresh}>Refresh</button>
+        <button onClick={generate}>Generate</button>
+        <button onClick={refresh}>
+        <FontAwesomeIcon icon={faSync} />
+        </button>
+        
+        <a href="https://us-west-2.console.aws.amazon.com/dynamodb/home?region=us-west-2#" target="_blank">
+        <img src={ddblogo} alt="Logo" />
+          </a> 
+        
+        
         {/* <FontAwesomeIcon icon={['fas', 'sync']} className="fa-spin"></FontAwesomeIcon> */}
         {/* <FontAwesomeIcon icon={faHome} /> */}
         {/* <FiRefreshCcw onClick={refresh} /> */}
