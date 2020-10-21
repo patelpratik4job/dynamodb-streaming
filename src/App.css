@@ -31,7 +31,8 @@
   border: none;
   /* color: white;  */
   font-weight: bold;
-  background-color: orange;
+  background-color: #3B48CC;
+  color: white;
   /* background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,116,1) 100%); */
 }
 
@@ -58,6 +59,10 @@ img {
   display: flex;
   flex-direction: row;
   padding: 1rem;
+  /* background-color: lightgray; */
+  /* justify-content: center; */
+  /* margin-left: -700px;
+  margin-right: -700px; */
 }
 
 .App-form > form > button {
@@ -66,7 +71,8 @@ img {
   margin-left: 10px;
   border: none;
   /* font-weight: bold; */
-  background-color: orange;
+  background-color: #3B48CC;
+  color: white;
 }
 
 .App-form > form > label {
@@ -75,4 +81,17 @@ img {
 
 .App-form > form > input {
   width: 40px;
+}
+
+.App-signout {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  background-color: #3B48CC;
+}
+
+.App-signout-username {
+  padding: 14px 14px 0 0;
+  font-weight: 700;
+  color: white;
 }
