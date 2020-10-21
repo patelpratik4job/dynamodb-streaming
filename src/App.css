@@ -26,8 +26,8 @@
   font-size: 1.5rem;
   padding: 4%;
   border-radius: 10px;
-  margin-right: 20px;
-  margin-left: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
   border: none;
   /* color: white;  */
   font-weight: bold;
@@ -43,16 +43,36 @@ img:hover {
   box-shadow: 20px 20px 20px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-/* .App-buttonsYes {
-  background-color: #F65314;
-}
-
-.App-buttonsNo {
-  background-color: #F65314;
-} */
-
 img {
   display: flex;
   height: 3.5rem;
   border-radius: 10px;
+}
+
+.App-info{
+  display: flex;
+  flex-direction: column;
+}
+
+.App-form > form{
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+.App-form > form > button {
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border: none;
+  /* font-weight: bold; */
+  background-color: orange;
+}
+
+.App-form > form > label {
+  margin: 0 5px 0 20px;
+}
+
+.App-form > form > input {
+  width: 40px;
 }

@@ -5,6 +5,7 @@ export const onCreateWindspeed = /* GraphQL */ `
   subscription OnCreateWindspeed {
     onCreateWindspeed {
       id
+      deviceID
       value
       createdAt
       updatedAt
@@ -15,6 +16,7 @@ export const onUpdateWindspeed = /* GraphQL */ `
   subscription OnUpdateWindspeed {
     onUpdateWindspeed {
       id
+      deviceID
       value
       createdAt
       updatedAt
@@ -25,6 +27,7 @@ export const onDeleteWindspeed = /* GraphQL */ `
   subscription OnDeleteWindspeed {
     onDeleteWindspeed {
       id
+      deviceID
       value
       createdAt
       updatedAt

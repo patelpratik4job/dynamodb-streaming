@@ -5,9 +5,8 @@ export const getWindspeed = /* GraphQL */ `
   query GetWindspeed($id: ID!) {
     getWindspeed(id: $id) {
       id
+      deviceID
       value
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -20,9 +19,8 @@ export const listWindspeeds = /* GraphQL */ `
     listWindspeeds(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        deviceID
         value
-        createdAt
-        updatedAt
       }
       nextToken
     }

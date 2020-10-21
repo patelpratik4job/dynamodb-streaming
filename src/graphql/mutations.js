@@ -8,9 +8,8 @@ export const createWindspeed = /* GraphQL */ `
   ) {
     createWindspeed(input: $input, condition: $condition) {
       id
+      deviceID
       value
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -21,9 +20,8 @@ export const updateWindspeed = /* GraphQL */ `
   ) {
     updateWindspeed(input: $input, condition: $condition) {
       id
+      deviceID
       value
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -34,9 +32,8 @@ export const deleteWindspeed = /* GraphQL */ `
   ) {
     deleteWindspeed(input: $input, condition: $condition) {
       id
+      deviceID
       value
-      createdAt
-      updatedAt
     }
   }
 `;
