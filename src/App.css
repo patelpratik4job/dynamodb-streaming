@@ -95,3 +95,15 @@ img {
   font-weight: 700;
   color: white;
 }
+
+.App-title {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background-color: #3B48CC;
+  font-weight: 800;
+  font-size: xx-large;
+  color: white;
+  padding: 0.5rem;
+  /* background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,116,1) 100%); */
+}

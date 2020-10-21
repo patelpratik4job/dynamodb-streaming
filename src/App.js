@@ -24,14 +24,8 @@ function AuthStateApp() {
   if (user) {
     return (
       <>    
-        <div className="App-signout">
-          <div className="App-signout-username">
-            {/* Hello {user.username} */}
-    <FontAwesomeIcon icon={faUser} />{" "}{user.username}
-          </div>
-          <AmplifySignOut buttonText="Sign Out"></AmplifySignOut>
-        </div>
-          <Windspeed />
+        <div className="App-title">Wind Turbine Data Generator</div>
+        <Windspeed />
      </>
     )
   }

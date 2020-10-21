@@ -19,6 +19,7 @@ Amplify.configure(awsconfig);
 function Windspeed() {
   
   const [mylist, setMyList] = useState([]);
+  const [mySortedlist, setMySortedList] = useState([]);
   const [loop, setLoop] = useState(10);
   const [lower, setLower] = useState(25);
   const [upper, setUpper] = useState(70);
@@ -31,16 +32,20 @@ function Windspeed() {
   async function genValues () {
     for (let i = 0; i < loop; i++) {
     const generateValues = { 
-      deviceID: "device" + Math.floor(Math.random() * 5) + 2,
+      deviceID: "device" + (Math.floor(Math.random() * 5) + 1),
       value: Math.floor(Math.random() * upper) + lower
     };
     await API.graphql({ query: mutations.createWindspeed, variables: { input: generateValues}});
     }
   }
-
+  const refresh = () => {
+    toast.success(`Fetcing values from DynamoDB`, 1000, () => {
+      updateVals();
+    }); 
+  }
   function generate () {
     genValues();
-    toast.success(`Generating ${loop} values between ${lower} and ${upper}`, 2000, () => {
+    toast.success(`Generating ${loop} values between ${lower} and ${upper}`, 1000, () => {
         updateVals();
     }); 
   }
@@ -51,23 +56,29 @@ function Windspeed() {
       fetchPolicy: "no-cache",
     });
     setMyList(result.data.listWindspeeds.items);
-    // console.log(result.data.listWindspeeds.items);
   };
 
-  const refresh = () => {
-    updateVals();
-  }
-  
+  const myChartArray = [];
   const generateKeyValePairs = (arraytoupdated) => {
     mylist.map((item, index) => {
-    var objNeeded = { name: 'init', value: -1};
+    var objNeeded = { date: '', name: 'init', value: -1};
+    objNeeded['date'] = item.createdAt;
     objNeeded['name'] = index+1;
     objNeeded['value'] = item.value;
     arraytoupdated.push(objNeeded);
     });
   }
+  generateKeyValePairs(myChartArray);
 
-  // generateKeyValePairs();
+    const SortList = () => {
+      console.log('unsort',myChartArray);
+      const ordered = {};
+      Object.keys(myChartArray).sort().forEach(function(key) {
+      ordered[key] = myChartArray[key];
+      });
+      setMySortedList(ordered);
+      console.log('ordered_list',ordered);
+    }
 
   function CustomizedLabel(props) {
     const { x, y, stroke, value } = props;
@@ -85,8 +96,6 @@ function Windspeed() {
       );
     }
   }
-  const myChartArray = [];
-  generateKeyValePairs(myChartArray);
 
   function CreateLineChart(val){
     return(
@@ -116,12 +125,12 @@ function Windspeed() {
 
   const { handleSubmit, register, errors } = useForm({resolver: yupResolver(schema)});
   const onSubmit = data => {
-    console.log('data->',data);
-    setLoop(data.numberofvals);
-    setLower(data.lowerLimit);
-    setUpper(data.upperLimit);
-    // console.log('min->',lower);
-    // console.log('max->',upper);
+    toast.success(`Updating Values: ${loop} Min: ${lower} Max: ${upper}`, 500, () => {
+      console.log('data->',data);
+      setLoop(data.numberofvals);
+      setLower(data.lowerLimit);
+      setUpper(data.upperLimit);
+    });
   }
 
   return (
@@ -148,17 +157,18 @@ function Windspeed() {
           ref={register({ min: 10, max: 99 })} 
           onChange={e => setUpper(e.target.value)}
           />            
-          <button type="submit"><FontAwesomeIcon icon={faSave} /></button>
+          <button type="submit">Save {" "}<FontAwesomeIcon icon={faSave} /></button>
 
-          <button onClick={refresh}>
-            <FontAwesomeIcon icon={faSync} onClick={refresh}/>
-          </button>
           </form>
         </div>
 
         <div className="App-buttons">
           <button onClick={generate}>
             Generate data
+          </button>
+
+          <button onClick={refresh}>
+            <FontAwesomeIcon icon={faSync}/>
           </button>
         
         <a href="https://us-west-2.console.aws.amazon.com/dynamodb/home?region=us-west-2#tables:" target="_blank" rel="noopener noreferrer">

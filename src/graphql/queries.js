@@ -21,6 +21,7 @@ export const listWindspeeds = /* GraphQL */ `
         id
         deviceID
         value
+        createdAt
       }
       nextToken
     }
