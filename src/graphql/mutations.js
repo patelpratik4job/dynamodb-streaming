@@ -10,6 +10,9 @@ export const createWindspeed = /* GraphQL */ `
       id
       deviceID
       value
+      index
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -22,6 +25,9 @@ export const updateWindspeed = /* GraphQL */ `
       id
       deviceID
       value
+      index
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -34,6 +40,9 @@ export const deleteWindspeed = /* GraphQL */ `
       id
       deviceID
       value
+      index
+      createdAt
+      updatedAt
     }
   }
 `;

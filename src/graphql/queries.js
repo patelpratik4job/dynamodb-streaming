@@ -7,6 +7,9 @@ export const getWindspeed = /* GraphQL */ `
       id
       deviceID
       value
+      index
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -21,7 +24,9 @@ export const listWindspeeds = /* GraphQL */ `
         id
         deviceID
         value
+        index
         createdAt
+        updatedAt
       }
       nextToken
     }

@@ -19,6 +19,7 @@ Amplify.configure(awsconfig);
 function Windspeed() {
   
   const [mylist, setMyList] = useState([]);
+  const [myIndex, setMyIndex] = useState();
   const [mySortedlist, setMySortedList] = useState([]);
   const [loop, setLoop] = useState(10);
   const [lower, setLower] = useState(25);
@@ -29,20 +30,27 @@ function Windspeed() {
     updateVals();
   }, []);
 
+  const updateVals = async() =>{
+    const result = await API.graphql({
+      query: queries.listWindspeeds,
+      fetchPolicy: "no-cache",
+    });
+    setMyList(result.data.listWindspeeds.items);
+    setMyIndex(result.data.listWindspeeds.items.length);
+  };
+
   async function genValues () {
-    for (let i = 0; i < loop; i++) {
-    const generateValues = { 
-      deviceID: "device" + (Math.floor(Math.random() * 5) + 1),
-      value: Math.floor(Math.random() * upper) + lower
-    };
-    await API.graphql({ query: mutations.createWindspeed, variables: { input: generateValues}});
+    for (let i = 0, j=myIndex; i < loop; i++) {
+      const generateValues = { 
+        index: i+j,
+        deviceID: "device" + (Math.floor(Math.random() * 5) + 1),
+        value: Math.floor(Math.random() * upper) + lower
+      };
+      await API.graphql({ query: mutations.createWindspeed, variables: { input: generateValues}});
+      setMyIndex(myIndex+1);
     }
   }
-  const refresh = () => {
-    toast.success(`Fetcing values from DynamoDB`, 1000, () => {
-      updateVals();
-    }); 
-  }
+
   function generate () {
     genValues();
     toast.success(`Generating ${loop} values between ${lower} and ${upper}`, 1000, () => {
@@ -50,35 +58,22 @@ function Windspeed() {
     }); 
   }
 
-  const updateVals = async() =>{
-    const result = await API.graphql({
-      query: queries.listWindspeeds,
-      fetchPolicy: "no-cache",
-    });
-    setMyList(result.data.listWindspeeds.items);
-  };
+  const refresh = () => {
+    toast.success(`Fetcing values from DynamoDB`, 1000, () => {
+      updateVals();
+    }); 
+  }
 
   const myChartArray = [];
   const generateKeyValePairs = (arraytoupdated) => {
-    mylist.map((item, index) => {
-    var objNeeded = { date: '', name: 'init', value: -1};
-    objNeeded['date'] = item.createdAt;
-    objNeeded['name'] = index+1;
+    mylist.map((item) => {
+    var objNeeded = { name: 'init', value: -1};
+    objNeeded['name'] = item.index;
     objNeeded['value'] = item.value;
     arraytoupdated.push(objNeeded);
     });
   }
   generateKeyValePairs(myChartArray);
-
-    const SortList = () => {
-      console.log('unsort',myChartArray);
-      const ordered = {};
-      Object.keys(myChartArray).sort().forEach(function(key) {
-      ordered[key] = myChartArray[key];
-      });
-      setMySortedList(ordered);
-      console.log('ordered_list',ordered);
-    }
 
   function CustomizedLabel(props) {
     const { x, y, stroke, value } = props;
@@ -108,7 +103,7 @@ function Windspeed() {
           >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis tick={true}/>
-          <YAxis />
+          <YAxis tick={true}/>
           <Tooltip />
           <Line type="monotone" isAnimationActive={false} dataKey="value" stroke="#8884d8" strokeWidth={2} label={<CustomizedLabel />} />
         </LineChart>
@@ -136,6 +131,7 @@ function Windspeed() {
   return (
     <div className="App">
       {/* <AmplifySignOut /> */}
+      {/* {console.log(mylist.length)} */}
       <header className="App-header">
       <div className="App-form">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -177,9 +173,9 @@ function Windspeed() {
         </div>
         <CreateLineChart data={myChartArray} />
         <div className="App-info">
-        <p>Every wind turbine has a range of wind speeds, typically around 30 to 55 mph. Speed other than this range is detected anomalous.{" "}
+        <p>Every wind turbine has a range of wind speeds, typically around 30 to 55 mph. Speed other than this range is detected anomalous{" "}
         <a href="https://www.wind-watch.org/faq-output.php" target="_blank" rel="noopener noreferrer">
-        source
+        (Source)
         </a>
         </p>
         </div>

@@ -7,6 +7,7 @@ export const onCreateWindspeed = /* GraphQL */ `
       id
       deviceID
       value
+      index
       createdAt
       updatedAt
     }
@@ -18,6 +19,7 @@ export const onUpdateWindspeed = /* GraphQL */ `
       id
       deviceID
       value
+      index
       createdAt
       updatedAt
     }
@@ -29,6 +31,7 @@ export const onDeleteWindspeed = /* GraphQL */ `
       id
       deviceID
       value
+      index
       createdAt
       updatedAt
     }
