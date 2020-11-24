@@ -43,7 +43,7 @@ function Windspeed() {
     for (let i = 0, j=myIndex; i < loop; i++) {
       const generateValues = { 
         index: i+j,
-        turbineID: "device" + (Math.floor(Math.random() * 5) + 1),
+        deviceID: "device" + (Math.floor(Math.random() * 5) + 1),
         value: Math.floor(Math.random() * upper) + lower
       };
       await API.graphql({ query: mutations.createWindspeed, variables: { input: generateValues}});
