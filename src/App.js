@@ -6,7 +6,7 @@ import { Auth, Hub } from 'aws-amplify';
 import './App.css';
 import Windspeed from "./Windspeed";
 
-function AuthStateApp() {
+function App() {
   const [user, updateUser] = React.useState(null);
   React.useEffect(() => {
     Auth.currentAuthenticatedUser()
@@ -56,4 +56,4 @@ function AuthStateApp() {
     </div>
   );
 }
-export default AuthStateApp;
+export default App;
