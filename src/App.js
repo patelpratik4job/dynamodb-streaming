@@ -47,7 +47,7 @@ function App() {
             },
             { type: "email",
               label: "Email",
-              placeholder: "Valid email address to get OTP"
+              placeholder: "Enter valid email to get OTP"
           }
           ]} 
         />
